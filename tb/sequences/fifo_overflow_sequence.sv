@@ -9,7 +9,7 @@ class fifo_overflow_sequence extends uvm_sequence#(fifo_seq_item);
   task body();
     fifo_req_item req;
 
-    repeat (20) begin
+    do begin
       req = fifo_seq_item::type_id::create("req");
 
       start_item(req);
@@ -20,7 +20,7 @@ class fifo_overflow_sequence extends uvm_sequence#(fifo_seq_item);
         `uvm_error("SEQ", "Randomization failed")
       end
       finish_item(req);
-    end
+    end while (!p_sequencer.vif.cb.full);
 
     repeat (10) begin
       req = fifo_seq_item::type_id::create("req");
