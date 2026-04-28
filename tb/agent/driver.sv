@@ -27,9 +27,9 @@ class fifo_driver extends uvm_driver#(fifo_seq_item);
 
       // drive signals
       @(posedge vif.clk);
-      vif.wr_en <= req.wr_en;
-      vif.rd_en <= req.rd_en;
-      vif.data_in <= req.data_in;
+      vif.cb.wr_en <= req.wr_en;
+      vif.cb.rd_en <= req.rd_en;
+      vif.cb.data_in <= req.data_in;
 
       `uvm_info("DRV", $sformatf("Driving: wr_en = %0d, rd_en = %0d, data_in = %0d", req.rd_en, req.wr_en, req.data_in), UVM_LOW)
   
